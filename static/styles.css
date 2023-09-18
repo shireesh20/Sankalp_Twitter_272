@@ -1,0 +1,119 @@
+/*
+@Author: Ashish, Shireesh
+@Purpose: CSS styling for the page
+*/
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply a background color similar to Twitter */
+body {
+    background-color: #f5f8fa;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh; /* Ensure full viewport height */
+}
+
+#tweetSubmit {
+    display: inline-block;
+    width: 100%;
+    margin-left: 0;
+}
+
+/* Style the container */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the Twitter logo and heading */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1da1f2;
+    margin-bottom: 20px;
+}
+
+/* Style the tweet form */
+.tweet-form {
+    margin-bottom: 20px;
+}
+
+#tweetText {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize: none;
+    font-size: 16px;
+}
+
+button {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #1da1f2;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Style the tweet feed */
+.tweet-feed h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+ul#tweetList {
+    list-style-type: none;
+    width: 35%;
+}
+
+ul#tweetList li {
+    border: 1px solid #e1e8ed;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+/* Style delete button */
+form {
+    display: inline-block;
+}
+
+#tweetTextList {
+    margin-right: 140px;
+}
+
+button[type="submit"] {
+    background-color: #e1e8ed;
+    color: #1da1f2;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #1da1f2;
+    color: #fff;
+}

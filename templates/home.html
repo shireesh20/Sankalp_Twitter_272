@@ -1,0 +1,82 @@
+<!--
+@Author: Ashish, Shireesh
+@Purpose: This html is the home page which contains the tweet text box, tweet history
+-->
+
+<!--@Author: Ashish-->
+<!--HTML code to display various components on the page-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename = '/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <section class="tweet-section">
+            <h1>Tweet Something</h1>
+            <form class="tweet-form" id="tweetForm">
+                <textarea id="tweetText" placeholder="What's happening?" rows="4"></textarea>
+                <button id="tweetSubmit" type="submit">Tweet</button>
+            </form>
+        </section>
+        
+        <section class="tweets-section">
+            <h2>Your Tweets</h2>
+            <ul id="tweetList" class="tweet-feed">
+                <!-- {% if tweets|length>0 %} -->
+                    {% for tweet in tweets %}
+                        <li>
+                            <span class="tweet-text">{{ tweets[tweet].text }}</span>
+                            <form action="/delete_tweet/{{ tweets[tweet].id }}" method="post">
+                                <button class="delete-button" type="submit">Delete</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                <!-- {% endif %} -->
+            </ul>
+        </section>
+    </div>
+
+
+    <!--@Author: Shireesh-->
+    <!--Javascript code to call the API -->
+    <script>
+        const tweetForm = document.getElementById('tweetForm');
+        const tweetText = document.getElementById('tweetText');
+        const tweetList = document.getElementById('tweetList');
+
+        tweetForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const text = tweetText.value;
+            fetch('/create_tweet', {
+                method: 'POST',
+                body: new URLSearchParams({ tweetText: text }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            })
+            .then((data) => {
+                // Append the new tweet to the list
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<span class="tweet-text">${data.text}</span>
+                    <form action="/delete_tweet/${data.id}" method="post">
+                        <button class="delete-button" type="submit">Delete</button>
+                    </form>`;
+                tweetList.appendChild(listItem);
+            })
+            .then(() => {
+                // Clear the text area
+                tweetText.value = '';
+            })
+            .then((data) => {
+                location.reload();
+            })
+            .catch((error) => {
+                // Handle errors if necessary
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>
